@@ -1,4 +1,5 @@
-import java.util.ArrayList;
+package co.edu.central.citamedicas;
+
 import java.util.Date;
 
 
@@ -6,30 +7,38 @@ public class CitaMedica {
     private Date fechaHora;
     private String motivo;
     private boolean cancelada;
+    private String observaciones;
 
     public CitaMedica(Date fechaHora, String motivo) {
         this.fechaHora = fechaHora;
         this.motivo = motivo;
         this.cancelada = false;
+        this.observaciones = "";
+    }
+
+    public Date getFechaHora() {
+        return fechaHora;
+    }
+
+    public String getMotivo() {
+        return motivo;
+    }
+
+    public boolean isCancelada() {
+        return cancelada;
     }
 
     public void cancelarCita() {
         this.cancelada = true;
     }
-}
 
-// Clase para manejar la lista de citas médicas
-class AgendaMedica {
-    private ArrayList<CitaMedica> citas;
-
-    public AgendaMedica() {
-        this.citas = new ArrayList<>();
+    public String getObservaciones() {
+        return observaciones;
     }
 
-    public void agregarCita(CitaMedica cita) {
-        this.citas.add(cita);
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
-
     public void cancelarCita(CitaMedica cita) {
         if (!cita.isCancelada()) {
             long horasRestantes = (cita.getFechaHora().getTime() - new Date().getTime()) / (60 * 60 * 1000);
@@ -44,5 +53,4 @@ class AgendaMedica {
         }
     }
 }
-
 
